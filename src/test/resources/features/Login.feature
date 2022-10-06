@@ -7,14 +7,14 @@ Feature: Login feature
     And user clicks on login button
     Then admin user is successfully logged in
 
-  @regression @sprint31 @arif
+  @regression @sprint31
   Scenario: Valid ess login
     #Given user is navigated to HRMS application
     When user enters ess username and password
     And user clicks on login button
     Then ess user is successfully logged in
 
-  @regression
+  @regression @arif
   Scenario: Invalid login
     #Given user is navigated to HRMS application
     When user enter invalid username and password

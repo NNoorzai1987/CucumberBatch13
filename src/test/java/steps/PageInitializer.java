@@ -12,11 +12,14 @@ public class PageInitializer {
     public static EmployeeInformationPage emp;
     public static AddEmployeePage addEmployeePage;
 
+
     public static void initializePageObjects(){
         login = new LoginPage();
         dash = new DashboardPage();
         emp = new EmployeeInformationPage();
         addEmployeePage = new AddEmployeePage();
+
+
     }
 
 

@@ -19,11 +19,11 @@ import org.junit.runner.RunWith;
         //irrelevant or unreadable character in it
         //recommended is, set it to true always
         monochrome = true,
-        tags = "@smoke",
+        tags = "@db",
         //when you use pretty keyword under plugins, it shows all the steps which you
         //executed in console
-        plugin = {"pretty", "html:target/cucumber.html"}
-)
+        plugin = {"pretty", "html:target/cucumber.html", "json:target/cucumber.json",
+                "rerun:target/failed.txt"})
 
 public class SmokeRunner {
 }

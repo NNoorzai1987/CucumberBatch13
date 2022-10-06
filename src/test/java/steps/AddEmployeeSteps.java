@@ -1,21 +1,25 @@
 package steps;
 
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import utils.CommonMethods;
-import utils.Constants;
-import utils.ExcelReader;
+import utils.*;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.zip.CheckedOutputStream;
+
+
+
 
 public class AddEmployeeSteps extends CommonMethods {
+    String firstNameFromUI;
+    String lastNameFromUI;
+    String idFromUI;
 
     @When("user clicks on add employee option")
     public void user_clicks_on_add_employee_option() {
@@ -42,6 +46,8 @@ public class AddEmployeeSteps extends CommonMethods {
 
     @When("user enters {string} , {string} and {string}")
     public void user_enters_and(String firstName, String middleName, String lastName) {
+        this.firstNameFromUI=firstName;
+        this.lastNameFromUI=lastName;
         sendText(addEmployeePage.firstName, firstName);
         sendText(addEmployeePage.middleName, middleName);
         sendText(addEmployeePage.lastName, lastName);
@@ -147,4 +153,28 @@ public class AddEmployeeSteps extends CommonMethods {
        }
     }
 
+    @And("user grabs id")
+    public void userGrabsId() {
+        idFromUI=addEmployeePage.empIdLoc.getAttribute("value");
+
+
+
+    }
+
+    @Then("fetch the data from backend and verify it")
+    public void fetchTheDataFromBackendAndVerifyIt() {
+        System.out.println(firstNameFromUI);
+        System.out.println(lastNameFromUI);
+        System.out.println(idFromUI);
+
+        String query= DbQuries.FETCH_FNAME_LNAME+ idFromUI +"'";
+        List<Map<String,String>> dbData= DbUtils.fetchDbData(query);
+        String firstNameFromDb=dbData.get(0).get("emp_firstname");
+        String lastNameFromDb=dbData.get(0).get("emp_lastname");
+
+        Assert.assertEquals(firstNameFromUI,firstNameFromDb);
+        Assert.assertEquals(lastNameFromUI,lastNameFromDb);
+
+
+    }
 }
