@@ -8,8 +8,8 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         //features we use to provide the path of all the features file
-        features = "src/test/resources/features/",
-        //glue is where we find implementations for gherkin steps
+       features =  "src/test/resources/features/",
+        //       is where we find implementations for gherkin steps
         //we provide the path of package where we defined all the steps
         glue = "steps",
         //if we set dry run to true, it stops the actual execution and quickly
@@ -20,7 +20,7 @@ import org.junit.runner.RunWith;
         //irrelevant or unreadable character in it
         //recommended is, set it to true always
         monochrome = true,
-        tags = "@excel",
+        tags = "@excel or @override or @dataprovider or @datatable or   @dashboard or  @smoke or @regression or @sprint29 or @sprint31 or @login",
         // or @override or @dataprovider or @datatable or   @dashboard or  @smoke or @regression or @sprint29 or @sprint31 or @login
         //when you use pretty keyword under plugins, it shows all the steps which you
         //executed in console

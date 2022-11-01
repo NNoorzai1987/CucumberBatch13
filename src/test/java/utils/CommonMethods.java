@@ -23,33 +23,19 @@ public class CommonMethods extends PageInitializer {
     public static WebDriver driver;
 
     public static void openBrowserAndLaunchApplication(){
-        ConfigReader.readProperties(Constants.CONFIGURATION_FILEPATH);
-        //cross browser testing
-        switch (ConfigReader.getPropertyValue("browser")){
-            case "chrome":
-//                ChromeOptions options = new ChromeOptions();
-//                options.addArguments("--headless");
-//                options.addArguments("start-maximized"); // open Browser in maximized mode
-//                options.addArguments("disable-infobars"); // disabling infobars
-//                options.addArguments("--disable-extensions"); // disabling extensions
-//                options.addArguments("--disable-gpu"); // applicable to windows os only
-//                options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
-//                options.addArguments("--no-sandbox"); // Bypass OS security model
-//
-//                WebDriverManager.chromedriver().setup();
-
-                ChromeOptions options = new ChromeOptions();
-                options.setHeadless(false);
-//                driver = new ChromeDriver(options);
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver(options);
-                break;
-            case "firefox":
-                WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
-                break;
-            default:
-                throw new RuntimeException("Invalid browser name");
+             ConfigReader.readProperties(Constants.CONFIGURATION_FILEPATH);
+            //cross browser testing
+            switch (ConfigReader.getPropertyValue("browser")){
+                case "chrome":
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver();
+                    break;
+                case "firefox":
+                    WebDriverManager.firefoxdriver().setup();
+                    driver = new FirefoxDriver();
+                    break;
+                default:
+                    throw new RuntimeException("Invalid browser name");
         }
 
         driver.manage().window().maximize();
